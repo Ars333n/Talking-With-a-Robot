@@ -1,0 +1,54 @@
+plugins {
+    alias(libs.plugins.androidApplication)
+}
+
+android {
+    namespace 'com.example.polinav3testtest'
+    //noinspection GradleDependency
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.example.polinav3TESTTEST1"
+        minSdk 23
+        //noinspection ExpiredTargetSdkVersion
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+//    task cleanAppleDoubleFiles(type: Exec) {
+//        description = 'Cleans AppleDouble files (._*) from the project directory before building.'
+//        commandLine 'dot_clean', '.'
+//    }
+
+//    preBuild.dependsOn cleanAppleDoubleFiles
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.constraintlayout
+    implementation files('../libs/SanbotOpenSDK_2.0.1.10.aar')
+    implementation libs.appcompat.v7
+    implementation libs.gson
+    implementation libs.activity
+    implementation 'androidx.annotation:annotation:1.2.0'
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}
+
