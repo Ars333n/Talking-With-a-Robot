@@ -143,7 +143,14 @@ public class MainActivity extends TopBaseActivity {
 
     private void appendMessage(String time, String sender, String text) {
         String currentText = chatLog.getText().toString();
-        chatLog.setText(currentText + "[" + time + "] " + sender + ": " + text + "\n");
+        String newMessage = "[" + time + "] " + sender + ": " + text + "\n";
+        chatLog.setText(currentText + newMessage);
+        sayMessage(text);
+    }
+
+    private void sayMessage(String textToSpeach) {
+        SpeechManager speechManager = (SpeechManager)getUnitManager(FuncConstant.SPEECH_MANAGER);
+        speechManager.startSpeak(textToSpeach);
     }
 
     @Override
