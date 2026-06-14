@@ -24,6 +24,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import com.sanbot.opensdk.function.unit.SpeechManager;
+import com.sanbot.opensdk.beans.FuncConstant;
 
 public class MainActivity extends TopBaseActivity {
 
@@ -143,7 +145,17 @@ public class MainActivity extends TopBaseActivity {
 
     private void appendMessage(String time, String sender, String text) {
         String currentText = chatLog.getText().toString();
-        chatLog.setText(currentText + "[" + time + "] " + sender + ": " + text + "\n");
+        String newMessage = "[" + time + "] " + sender + ": " + text + "\n";
+        chatLog.setText(currentText + newMessage);
+
+        if ("AI".equals(sender)) {
+            sayMessage(text);
+        }
+    }
+
+    private void sayMessage(String textToSpeech) {
+        SpeechManager speechManager = (SpeechManager)getUnitManager(FuncConstant.SPEECH_MANAGER);
+        speechManager.startSpeak(textToSpeech);
     }
 
     @Override
